@@ -14,11 +14,9 @@ def PowerOne(SunUp):
         c.connect()
         result = dict()
 
-        product_number=c.pn()
-        result["product_number"] = product_number
+        result["product_number"] = c.pn()
 
-        serial_number=c.serial_number()
-        result["serial_number"] = serial_number
+        result["serial_number"] = c.serial_number()
 
         if SunUp:
             output_power = c.measure(3)
@@ -41,24 +39,19 @@ def PowerOne(SunUp):
         result["inverter_temperature"] = inverter_temperature
 
         #ENERGY DAILY
-        daily_energy = c.cumulated_energy(period=0) / 1000
-        result["daily_energy"] = daily_energy
+        result["daily_energy"] = c.cumulated_energy(period=0) / 1000
 
         #ENERGY WEEK
-        energy_week = c.cumulated_energy(period=1) / 1000
-        result["energy_week"] = energy_week
+        result["energy_week"] = c.cumulated_energy(period=1) / 1000
 
         #ENERGY MONTH
-        energy_month = c.cumulated_energy(period=3) / 1000
-        result["energy_month"] = energy_month
+        result["energy_month"] = c.cumulated_energy(period=3) / 1000
 
         #ENERGY YEAR
-        year_energy = c.cumulated_energy(period=4) / 1000
-        result["year_energy"] = year_energy
+        result["year_energy"] = c.cumulated_energy(period=4) / 1000
 
         #ENERGY TOTAL
-        energy_total = c.cumulated_energy(period=5) / 1000
-        result["energy_total"] = energy_total
+        result["energy_total"] = c.cumulated_energy(period=5) / 1000
 
         return result
 
