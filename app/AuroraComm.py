@@ -42,10 +42,11 @@ while True:
         
         resPowerOne = PowerOne(1)
 
-        Advertise(client, resPowerOne, os.getenv('MQTT_TOPIC'))
+        if resPowerOne.get("serial_number") is not None:
+            Advertise(client, resPowerOne, os.getenv('MQTT_TOPIC'))
 
-        jsonRes = json.dumps(resPowerOne)
-        client.publish(os.getenv('MQTT_TOPIC'), jsonRes)
+            jsonRes = json.dumps(resPowerOne)
+            client.publish(os.getenv('MQTT_TOPIC'), jsonRes)
 
         time.sleep(2)
     
@@ -54,10 +55,11 @@ while True:
 
         resPowerOne = PowerOne(0)
 
-        Advertise(client, resPowerOne, os.getenv('MQTT_TOPIC'))
+        if resPowerOne.get("serial_number") is not None:
+            Advertise(client, resPowerOne, os.getenv('MQTT_TOPIC'))
 
-        jsonRes = json.dumps(resPowerOne)
-        client.publish(os.getenv('MQTT_TOPIC'), jsonRes, retain=True)
+            jsonRes = json.dumps(resPowerOne)
+            client.publish(os.getenv('MQTT_TOPIC'), jsonRes, retain=True)
 
         #client.loop_stop()
 
