@@ -7,16 +7,12 @@ import pytz
 load_dotenv()
 
 def IsSunUp():
-    longitude = float(os.getenv('LONGITUDE'))
-    latitude = float(os.getenv('LATITUDE'))
 
-    sun = Sun(latitude, longitude)
-    today_sunrise = sun.get_sunrise_time()
-    today_sunset = sun.get_sunset_time()
+    sun = Sun(float(os.getenv('LATITUDE')), float(os.getenv('LONGITUDE')))
 
-    today_dawn = today_sunrise + timedelta(minutes=-15)
-    today_twilight = today_sunset + timedelta (minutes = 15)
+    today_dawn = sun.get_sunrise_time() + timedelta(minutes=-15)
+    today_twilight = sun.get_sunset_time() + timedelta(minutes = 15)
 
-    time = datetime.utcnow().replace(tzinfo=pytz.timezone('UTC'))
+    now = datetime.utcnow().replace(tzinfo=pytz.timezone('UTC'))
 
-    return time > today_dawn and time < today_twilight
+    return now > today_dawn and now < today_twilight
