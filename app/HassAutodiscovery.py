@@ -64,7 +64,7 @@ def Advertise (client, PowerOne, topic):
         "unique_id": "weekly_production",
         "state_topic": "solar/1",
         "unit_of_measurement": "kWh",
-        "value_template": "{{ value_json.weekly_energy | round(1)}}",
+        "value_template": "{{ value_json.energy_week | round(1)}}",
         "device_class": "energy",
         "state_class": "total_increasing",
         "icon": "mdi:solar-power-variant"
@@ -79,7 +79,7 @@ def Advertise (client, PowerOne, topic):
         "unique_id": "monthly_production",
         "state_topic": "solar/1",
         "unit_of_measurement": "kWh",
-        "value_template": "{{ value_json.monthly_energy | round(1)}}",
+        "value_template": "{{ value_json.energy_month | round(1)}}",
         "device_class": "energy",
         "state_class": "total_increasing",
         "icon": "mdi:solar-power-variant"
@@ -94,7 +94,7 @@ def Advertise (client, PowerOne, topic):
         "unique_id": "yearly_production",
         "state_topic": "solar/1",
         "unit_of_measurement": "kWh",
-        "value_template": "{{ value_json.yearly_energy | round(1)}}",
+        "value_template": "{{ value_json.year_energy | round(1)}}",
         "device_class": "energy",
         "state_class": "total_increasing",
         "icon": "mdi:solar-power-variant"
