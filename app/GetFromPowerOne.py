@@ -60,6 +60,5 @@ def PowerOne(SunUp):
     except Exception as e:
         if str(e) == 'Unknown transmission state':
             print(str(e) + ' - the light is probably to low')
-            time.sleep(60)
         else:
             print(e)
