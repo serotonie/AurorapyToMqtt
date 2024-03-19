@@ -15,4 +15,7 @@ def IsSunUp():
 
     now = datetime.utcnow().replace(tzinfo=pytz.timezone('UTC'))
 
-    return now > today_dawn and now < today_twilight
+    if (os.getenv('DEBUG', False) == "True":
+        print('The sun is up:', now > today_dawn and now < today_twilight, '\nTime now:', now, '\nToday Dawn:', today_dawn, '\nToday Twilight:', today_twilight)
+
+    return (now > today_dawn and now < today_twilight)
