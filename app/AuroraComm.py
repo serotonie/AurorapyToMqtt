@@ -42,7 +42,7 @@ while True:
         
         resPowerOne = PowerOne(1)
 
-        if resPowerOne.get("serial_number") is not None:
+        if resPowerOne is not None:
             Advertise(client, resPowerOne, os.getenv('MQTT_TOPIC'))
 
             jsonRes = json.dumps(resPowerOne)
