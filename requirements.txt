@@ -7,5 +7,5 @@ python-dotenv
 pytz
 Shapely
 six
-suntime
+suntime<=1.2.5
 waiting
