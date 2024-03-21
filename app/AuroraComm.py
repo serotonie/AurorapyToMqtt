@@ -40,13 +40,21 @@ while True:
             #client.loop_start()
             sunup = sunup + 1           
         
-        resPowerOne = PowerOne(1)
+            resPowerOne = PowerOne(1)
 
-        if resPowerOne is not None:
-            Advertise(client, resPowerOne, os.getenv('MQTT_TOPIC'))
+            if resPowerOne is not None:
+                Advertise(client, resPowerOne, os.getenv('MQTT_TOPIC'))
 
-            jsonRes = json.dumps(resPowerOne)
-            client.publish(os.getenv('MQTT_TOPIC'), jsonRes)
+                jsonRes = json.dumps(resPowerOne)
+                client.publish(os.getenv('MQTT_TOPIC'), jsonRes)
+
+        else:
+            resPowerOne = PowerOne(1)
+
+            if resPowerOne is not None:
+
+                jsonRes = json.dumps(resPowerOne)
+                client.publish(os.getenv('MQTT_TOPIC'), jsonRes)            
 
         time.sleep(2)
     
