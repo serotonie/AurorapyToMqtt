@@ -1,4 +1,4 @@
-FROM ghcr.io/rblaine95/python:3-slim
+FROM python:3-slim
 
 ARG USERNAME=worker
 ARG USER_UID=1000
