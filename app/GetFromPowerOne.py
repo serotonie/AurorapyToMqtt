@@ -5,13 +5,16 @@ import time
 
 load_dotenv()
 
+
 def PowerOne(SunUp):
 
-    c = AuroraTCPClient(ip=os.getenv('AURORA_POWERONE_HOST'), port=int(os.getenv('AURORA_POWERONE_PORT')), address=int(os.getenv('AURORA_POWERONE_ADRESSE')))
+    c = AuroraTCPClient(ip=os.getenv('AURORA_POWERONE_HOST'), port=int(os.getenv(
+        'AURORA_POWERONE_PORT')), address=int(os.getenv('AURORA_POWERONE_ADRESSE')))
 
     try:
 
         c.connect()
+
         result = dict()
 
         result["product_number"] = c.pn()
@@ -31,31 +34,31 @@ def PowerOne(SunUp):
             input2_current = 0.0
             inverter_temperature = 0.0
 
-        result["output_power"] = output_power 
+        result["output_power"] = output_power
         result["input_voltage"] = input_voltage
-        result["input1_current"] = input1_current 
+        result["input1_current"] = input1_current
         result["input2_current"] = input2_current
         result["ampsTot"] = input1_current + input2_current
         result["inverter_temperature"] = inverter_temperature
 
-        #ENERGY DAILY
+        # ENERGY DAILY
         result["daily_energy"] = c.cumulated_energy(period=0) / 1000
 
-        #ENERGY WEEK
+        # ENERGY WEEK
         result["energy_week"] = c.cumulated_energy(period=1) / 1000
 
-        #ENERGY MONTH
+        # ENERGY MONTH
         result["energy_month"] = c.cumulated_energy(period=3) / 1000
 
-        #ENERGY YEAR
+        # ENERGY YEAR
         result["year_energy"] = c.cumulated_energy(period=4) / 1000
 
-        #ENERGY TOTAL
+        # ENERGY TOTAL
         result["energy_total"] = c.cumulated_energy(period=5) / 1000
 
-        return result
-
         c.close()
+
+        return result
 
     except Exception as e:
         if str(e) == 'Unknown transmission state':
