@@ -9,6 +9,7 @@ from GetFromPowerOne import PowerOne
 from aurorapy.client import AuroraError, AuroraTCPClient
 from HassAutodiscovery import Advertise
 
+load_dotenv()
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, reason_code, properties):
@@ -16,13 +17,20 @@ def on_connect(client, userdata, flags, reason_code, properties):
     client.publish(os.getenv('MQTT_TOPIC')+"/status",
                    payload="online", qos=0, retain=True)
 
+if 'MQTT_USERNAME_FILE' in os.environ:
+    MQTT_USERNAME = open(os.getenv('MQTT_USERNAME_FILE'), 'r').read()
+else:
+    MQTT_USERNAME = os.getenv('MQTT_USERNAME')
 
-load_dotenv()
+if 'MQTT_PASSWORD_FILE' in os.environ:
+    MQTT_PASSWORD = open(os.getenv('MQTT_PASSWORD_FILE'), 'r').read()
+else:
+    MQTT_PASSWORD = os.getenv('MQTT_PASSWORD')
 
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 client.on_connect = on_connect
 
-client.username_pw_set(os.getenv('MQTT_USERNAME'), os.getenv('MQTT_PASSWORD'))
+client.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
 client.will_set(os.getenv('MQTT_TOPIC')+"/status",
                 payload="offline", qos=0, retain=True)
 client.connect(os.getenv('MQTT_BROKER_HOST'),
