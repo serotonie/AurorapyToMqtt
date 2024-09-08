@@ -18,7 +18,7 @@ def on_connect(client, userdata, flags, reason_code, properties):
                    payload="online", qos=0, retain=True)
 
 if 'MQTT_USERNAME_FILE' in os.environ:
-    MQTT_USERNAME = open(os.getenv('MQTT_USERNAME_FILE'), 'r').readline()
+    MQTT_USERNAME = open(os.getenv('MQTT_USERNAME_FILE'), 'r').read().splitlines()[0]
 else:
     MQTT_USERNAME = os.getenv('MQTT_USERNAME')
     
@@ -26,7 +26,7 @@ if os.getenv('DEBUG', False) == "True":
     print(MQTT_USERNAME)
 
 if 'MQTT_PASSWORD_FILE' in os.environ:
-    MQTT_PASSWORD = open(os.getenv('MQTT_PASSWORD_FILE'), 'r').readline()
+    MQTT_PASSWORD = open(os.getenv('MQTT_PASSWORD_FILE'), 'r').read().splitlines()[0]
 else:
     MQTT_PASSWORD = os.getenv('MQTT_PASSWORD')
 
