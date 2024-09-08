@@ -21,11 +21,17 @@ if 'MQTT_USERNAME_FILE' in os.environ:
     MQTT_USERNAME = open(os.getenv('MQTT_USERNAME_FILE'), 'r').read()
 else:
     MQTT_USERNAME = os.getenv('MQTT_USERNAME')
+    
+if os.getenv('DEBUG', False) == "True":
+    print(MQTT_USERNAME)
 
 if 'MQTT_PASSWORD_FILE' in os.environ:
     MQTT_PASSWORD = open(os.getenv('MQTT_PASSWORD_FILE'), 'r').read()
 else:
     MQTT_PASSWORD = os.getenv('MQTT_PASSWORD')
+
+if os.getenv('DEBUG', False) == "True":
+    print(MQTT_PASSWORD)
 
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 client.on_connect = on_connect
