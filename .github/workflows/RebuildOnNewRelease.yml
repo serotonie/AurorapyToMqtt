@@ -50,5 +50,8 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ steps.meta.outputs.tags }}
-            ${{ steps.meta.outputs.tags }}
+            ${{ steps.meta.outputs.tags }}          
+          cache-from: ghcr.io/serotonie/aurorapy2mqtt
+          cache-to: type=inline
           labels: ${{ steps.meta.outputs.labels }}
+  
