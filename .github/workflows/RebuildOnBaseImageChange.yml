@@ -47,5 +47,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/serotonie/aurorapy2mqtt:latest
-            serotonie/aurorapy2mqtt:latest
+            serotonie/aurorapy2mqtt:latest          
+          cache-from: ghcr.io/serotonie/aurorapy2mqtt
+          cache-to: type=inline
         if: steps.baseupdatecheck.outputs.needs-updating == 'true' || github.event_name == 'workflow_dispatch'
